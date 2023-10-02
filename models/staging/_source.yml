@@ -1,0 +1,25 @@
+version: 2
+
+sources:
+  - name: raw_csv
+    dataset: caravan_external
+    loader: datawagon
+    # loaded_at_field: "_file_load_date:timestamp"
+    tables:
+      - name: claim_raw
+        description: "Daily ad revenue by country and claim"
+        config:
+          enabled: true
+        external:
+          location: 'gs://content_owner_yt_reports/caravan/claim/*'
+          options:
+            format: csv
+            skip_leading_rows: 1
+            hive_partition_uri_prefix: 'gs://content_owner_yt_reports/caravan/claim/'
+          partitions:               
+            - name: report_date_key
+              data_type: int64                 
+        tests:
+          - unique:
+              column_name: "day || '-' || asset_id || '-' || video_id || '-' || country || '-' || content_type || '-' || policy || '-' || _content_owner"
+      
