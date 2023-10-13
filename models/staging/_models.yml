@@ -59,4 +59,8 @@ models:
       - name: partner_revenue
       - name: report_date_key
 
-
+  - name: stg__longs__asset__sub_rev
+  - name: stg__longs__music_asset__sub_rev
+  - name: stg__longs__video__ad_rev
+  - name: stg__shorts__video__ad_rev
+  - name: stg__shorts__video__sub_rev
