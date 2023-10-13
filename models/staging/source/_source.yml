@@ -1,0 +1,327 @@
+version: 2
+
+sources:
+  - name: raw_csv
+    dataset: caravan_external
+    loader: datawagon
+    tables:
+      - name: claim_raw
+        description: "Daily ad revenue by country and claim"
+        external:
+          location: "gs://content_owner_yt_reports/caravan/claim_raw/*"
+          options:
+            format: csv
+            skip_leading_rows: 1
+            hive_partition_uri_prefix: "gs://content_owner_yt_reports/caravan/claim_raw/"
+          partitions:
+            - name: report_date_key
+              data_type: int64
+        columns:
+        - name: adjustment_type
+          data_type: string
+        - name: day
+          data_type: int64
+        - name: country
+          data_type: string
+        - name: video_id
+          data_type: string
+        - name: channel_id
+          data_type: string
+        - name: asset_id
+          data_type: string
+        - name: asset_channel_id
+          data_type: string
+        - name: asset_type
+          data_type: string
+        - name: custom_id
+          data_type: string
+        - name: content_type
+          data_type: string
+        - name: policy
+          data_type: string
+        - name: claim_type
+          data_type: string
+        - name: claim_origin
+          data_type: string
+        - name: owned_views
+          data_type: int64
+        - name: youtube_revenue_split__auction
+          data_type: numeric
+        - name: youtube_revenue_split__reserved
+          data_type: numeric
+        - name: youtube_revenue_split__partner_sold_youtube_served
+          data_type: numeric
+        - name: youtube_revenue_split__partner_sold_partner_served
+          data_type: numeric
+        - name: youtube_revenue_split
+          data_type: numeric
+        - name: partner_revenue__auction
+          data_type: numeric
+        - name: partner_revenue__reserved
+          data_type: numeric
+        - name: partner_revenue__partner_sold_youtube_served
+          data_type: numeric
+        - name: partner_revenue__partner_sold_partner_served
+          data_type: numeric
+        - name: partner_revenue
+          data_type: numeric
+      - name: adj_claim_raw
+        description: "Daily ad revenue by country and claim (Adjusted)"
+        external:
+          location: "gs://content_owner_yt_reports/caravan/adj_claim_raw/*"
+          options:
+            format: csv
+            skip_leading_rows: 1
+            hive_partition_uri_prefix: "gs://content_owner_yt_reports/caravan/adj_claim_raw/"
+          partitions:
+            - name: report_date_key
+              data_type: int64
+        columns:
+        - name: adjustment_type
+          data_type: string
+        - name: day
+          data_type: int64
+        - name: country
+          data_type: string
+        - name: video_id
+          data_type: string
+        - name: channel_id
+          data_type: string
+        - name: asset_id
+          data_type: string
+        - name: asset_channel_id
+          data_type: string
+        - name: asset_type
+          data_type: string
+        - name: custom_id
+          data_type: string
+        - name: content_type
+          data_type: string
+        - name: policy
+          data_type: string
+        - name: claim_type
+          data_type: string
+        - name: claim_origin
+          data_type: string
+        - name: owned_views
+          data_type: int64
+        - name: youtube_revenue_split__auction
+          data_type: numeric
+        - name: youtube_revenue_split__reserved
+          data_type: numeric
+        - name: youtube_revenue_split__partner_sold_youtube_served
+          data_type: numeric
+        - name: youtube_revenue_split__partner_sold_partner_served
+          data_type: numeric
+        - name: youtube_revenue_split
+          data_type: numeric
+        - name: partner_revenue__auction
+          data_type: numeric
+        - name: partner_revenue__reserved
+          data_type: numeric
+        - name: partner_revenue__partner_sold_youtube_served
+          data_type: numeric
+        - name: partner_revenue__partner_sold_partner_served
+          data_type: numeric
+        - name: partner_revenue
+          data_type: numeric
+
+
+      - name: video_raw
+        description: "Daily ad revenue by country and video"
+        external:
+          location: "gs://content_owner_yt_reports/caravan/video_raw/*"
+          options:
+            format: csv
+            skip_leading_rows: 1
+            hive_partition_uri_prefix: "gs://content_owner_yt_reports/caravan/video_raw/"
+          partitions:
+            - name: report_date_key
+              data_type: int64
+        columns:
+        - name: adjustment_type
+          data_type: string
+        - name: day
+          data_type: int64
+        - name: country
+          data_type: string
+        - name: video_id
+          data_type: string
+        - name: video_title
+          data_type: string
+        - name: video_duration__sec
+          data_type: int64
+        - name: category
+          data_type: string
+        - name: channel_id
+          data_type: string
+        - name: uploader
+          data_type: string
+        - name: channel_display_name
+          data_type: string
+        - name: content_type
+          data_type: string
+        - name: policy
+          data_type: string
+        - name: owned_views
+          data_type: int64
+        - name: youtube_revenue_split__auction
+          data_type: numeric
+        - name: youtube_revenue_split__reserved
+          data_type: numeric
+        - name: youtube_revenue_split__partner_sold_youtube_served
+          data_type: numeric
+        - name: youtube_revenue_split__partner_sold_partner_served
+          data_type: numeric
+        - name: youtube_revenue_split
+          data_type: numeric
+        - name: partner_revenue__auction
+          data_type: numeric
+        - name: partner_revenue__reserved
+          data_type: numeric
+        - name: partner_revenue__partner_sold_youtube_served
+          data_type: numeric
+        - name: partner_revenue__partner_sold_partner_served
+          data_type: numeric
+        - name: partner_revenue
+          data_type: numeric    
+
+      - name: red_rawdata_asset
+        description: "Daily ad revenue by country and video"
+        external:
+          location: "gs://content_owner_yt_reports/caravan/red_rawdata_asset/*"
+          options:
+            format: csv
+            skip_leading_rows: 2
+            hive_partition_uri_prefix: "gs://content_owner_yt_reports/caravan/red_rawdata_asset/"
+          partitions:
+            - name: report_date_key
+              data_type: int64
+        columns:
+        - name: adjustment_type
+          data_type: string
+        - name: day
+          data_type: int64
+        - name: country
+          data_type: string
+        - name: asset_id
+          data_type: string
+        - name: asset_labels
+          data_type: string
+        - name: asset_channel_id
+          data_type: string
+        - name: custom_id
+          data_type: string
+        - name: asset_title
+          data_type: string
+        - name: owned_watchtime
+          data_type: int64
+        - name: partner_revenue
+          data_type: numeric      
+      
+      - name: red_music_rawdata_asset
+        description: "Daily ad revenue by country"
+        external:
+          location: "gs://content_owner_yt_reports/caravan/red_music_rawdata_asset/*"
+          options:
+            format: csv
+            skip_leading_rows: 2
+            hive_partition_uri_prefix: "gs://content_owner_yt_reports/caravan/red_music_rawdata_asset/"
+          partitions:
+            - name: report_date_key
+              data_type: int64            
+        columns:
+          - name: adjustment_type
+            data_type: string
+          - name: day
+            data_type: int64
+          - name: country
+            data_type: string
+          - name: asset_id
+            data_type: string
+          - name: asset_labels
+            data_type: string
+          - name: asset_channel_id
+            data_type: string
+          - name: custom_id
+            data_type: string
+          - name: asset_title
+            data_type: string
+          - name: owned_views
+            data_type: int64
+          - name: partner_revenue
+            data_type: numeric
+
+      - name: monthly_shorts_non_music_ads_video_summary
+        description: "Daily ad revenue by country"
+        external:
+          location: "gs://content_owner_yt_reports/caravan/monthly_shorts_non_music_ads_video_summary/*"
+          options:
+            format: csv
+            skip_leading_rows: 1
+            hive_partition_uri_prefix: "gs://content_owner_yt_reports/caravan/monthly_shorts_non_music_ads_video_summary/"
+          partitions:
+            - name: report_date_key
+              data_type: int64            
+        columns:
+          - name: adjustment_type
+            data_type: string
+          - name: video_id
+            data_type: string
+          - name: video_title
+            data_type: string
+          - name: video_duration__sec
+            data_type: int64
+          - name: category
+            data_type: string
+          - name: channel_id
+            data_type: string
+          - name: uploader
+            data_type: string
+          - name: content_type
+            data_type: string
+          - name: policy
+            data_type: string
+          - name: total_views
+            data_type: int64
+          - name: net_partner_revenue__post_revshare
+            data_type: numeric
+
+      - name: monthly_shorts_non_music_subscription_video_summary
+        description: "Daily ad revenue by country"
+        external:
+          location: "gs://content_owner_yt_reports/caravan/monthly_shorts_non_music_subscription_video_summary/*"
+          options:
+            format: csv
+            skip_leading_rows: 2
+            hive_partition_uri_prefix: "gs://content_owner_yt_reports/caravan/monthly_shorts_non_music_subscription_video_summary/"
+          partitions:
+            - name: report_date_key
+              data_type: int64            
+        columns:
+        - name: adjustment_type
+          data_type: string
+        - name: day
+          data_type: int64
+        - name: country
+          data_type: string
+        - name: video_id
+          data_type: string
+        - name: custom_id
+          data_type: string
+        - name: content_type
+          data_type: string
+        - name: video_title
+          data_type: string
+        - name: video_duration__sec
+          data_type: int64
+        - name: username
+          data_type: string
+        - name: uploader
+          data_type: string
+        - name: channel_id
+          data_type: string
+        - name: owned_subscription_views
+          data_type: int64
+        - name: partner_revenue
+          data_type: numeric
