@@ -1,9 +1,10 @@
 version: 2
 
 models:
-  
   - name: stg__longs__claim__ad_rev
     description: ""
+    config:
+      materialized: "incremental"
     columns:
       - name: adjustment_type
       - name: date_key
@@ -29,7 +30,55 @@ models:
       - name: partner_revenue__partner_sold_youtube_served
       - name: partner_revenue__partner_sold_partner_served
       - name: partner_revenue
-      - name: file_name
-      - name: content_owner
       - name: report_date_key
-      - name: file_load_date
+
+  - name: stg__longs__claim__ad_rev_adj
+    description: ""
+    config:
+      materialized: "incremental"    
+    columns:
+      - name: adjustment_type
+      - name: date_key
+      - name: country
+      - name: video_id
+      - name: channel_id
+      - name: asset_id
+      - name: asset_channel_id
+      - name: asset_type
+      - name: custom_id
+      - name: content_type
+      - name: policy
+      - name: claim_type
+      - name: claim_origin
+      - name: owned_views
+      - name: youtube_revenue_split__auction
+      - name: youtube_revenue_split__reserved
+      - name: youtube_revenue_split__partner_sold_youtube_served
+      - name: youtube_revenue_split__partner_sold_partner_served
+      - name: youtube_revenue_split
+      - name: partner_revenue__auction
+      - name: partner_revenue__reserved
+      - name: partner_revenue__partner_sold_youtube_served
+      - name: partner_revenue__partner_sold_partner_served
+      - name: partner_revenue
+      - name: report_date_key
+
+  - name: stg__longs__asset__sub_rev
+    config:
+      materialized: "incremental" 
+
+  - name: stg__longs__music_asset__sub_rev
+    config:
+      materialized: "incremental"  
+
+  - name: stg__longs__video__ad_rev
+    config:
+      materialized: "incremental"  
+
+  - name: stg__shorts__video__ad_rev
+    config:
+      materialized: "incremental"  
+      
+  - name: stg__shorts__video__sub_rev
+    config:
+      materialized: "incremental"

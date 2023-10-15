@@ -1,22 +1,20 @@
 with
-    source as (select * from {{ source("raw_csv", "claim_raw") }}),
+    source as (select * from {{ source("raw_csv", "video_raw") }}),
 
     renamed as (
-
         select
             adjustment_type,
             day as date_key,
             country as country_code,
             video_id,
+            video_title,
+            video_duration__sec,
+            category,
             {{ clean_channel_id("channel_id") }} as channel_id,
-            asset_id,
-            {{ clean_channel_id("asset_channel_id") }} as asset_channel_id,
-            asset_type,
-            custom_id,
+            uploader,
+            channel_display_name,
             content_type,
             policy,
-            claim_type,
-            claim_origin,
             owned_views,
             youtube_revenue_split__auction,
             youtube_revenue_split__reserved,
@@ -28,29 +26,25 @@ with
             partner_revenue__partner_sold_youtube_served,
             partner_revenue__partner_sold_partner_served,
             partner_revenue,
-            {# Partition #}
             report_date_key
 
         from source
-
     ),
-
     incremental as (
-        
-        select 
+
+        select
             adjustment_type,
             date_key,
             country_code,
             video_id,
+            video_title,
+            video_duration__sec,
+            category,
             channel_id,
-            asset_id,
-            asset_channel_id,
-            asset_type,
-            custom_id,
+            uploader,
+            channel_display_name,
             content_type,
             policy,
-            claim_type,
-            claim_origin,
             owned_views,
             youtube_revenue_split__auction,
             youtube_revenue_split__reserved,
@@ -62,18 +56,16 @@ with
             partner_revenue__partner_sold_youtube_served,
             partner_revenue__partner_sold_partner_served,
             partner_revenue,
-            {# Partition #}
             report_date_key
         from renamed
 
         {% if is_incremental() %}
 
-        where report_date_key > (select max(report_date_key) from {{ this }})
+            where report_date_key > (select max(report_date_key) from {{ this }})
 
         {% endif %}
 
     )
-
 
 select *
 from incremental

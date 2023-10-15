@@ -1,5 +1,5 @@
 with
-    source as (select * from {{ source("raw_csv", "claim_raw") }}),
+    source as (select * from {{ source("raw_csv", "adj_claim_raw") }}),
 
     renamed as (
 
@@ -32,12 +32,11 @@ with
             report_date_key
 
         from source
-
     ),
 
     incremental as (
-        
-        select 
+
+        select
             adjustment_type,
             date_key,
             country_code,
@@ -68,12 +67,11 @@ with
 
         {% if is_incremental() %}
 
-        where report_date_key > (select max(report_date_key) from {{ this }})
+            where report_date_key > (select max(report_date_key) from {{ this }})
 
         {% endif %}
 
     )
-
 
 select *
 from incremental
