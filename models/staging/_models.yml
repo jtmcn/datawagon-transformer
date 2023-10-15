@@ -3,6 +3,8 @@ version: 2
 models:
   - name: stg__longs__claim__ad_rev
     description: ""
+    config:
+      materialized: "incremental"
     columns:
       - name: adjustment_type
       - name: date_key
@@ -32,6 +34,8 @@ models:
 
   - name: stg__longs__claim__ad_rev_adj
     description: ""
+    config:
+      materialized: "incremental"    
     columns:
       - name: adjustment_type
       - name: date_key
@@ -60,7 +64,21 @@ models:
       - name: report_date_key
 
   - name: stg__longs__asset__sub_rev
+    config:
+      materialized: "incremental" 
+
   - name: stg__longs__music_asset__sub_rev
+    config:
+      materialized: "incremental"  
+
   - name: stg__longs__video__ad_rev
+    config:
+      materialized: "incremental"  
+
   - name: stg__shorts__video__ad_rev
+    config:
+      materialized: "incremental"  
+      
   - name: stg__shorts__video__sub_rev
+    config:
+      materialized: "incremental"

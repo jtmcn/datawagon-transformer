@@ -1,0 +1,46 @@
+version: 2
+
+models:
+  - name: int__longs__asset__sub_rev__daily_channel_rev
+    description: ""
+    columns:
+      - name: surrogate_key
+        tests:
+          - unique
+          - not_null
+
+
+  - name: int__longs__claim__ad_rev__daily_channel_rev
+    description: ""
+    columns:
+      - name: surrogate_key
+        tests:
+          - unique
+          - not_null
+
+
+  - name: int__longs__claim__ad_rev__daily_channel_rev_adj
+    description: ""
+    columns:
+      - name: surrogate_key
+        tests:
+          - unique
+          - not_null
+
+
+  - name: int__longs__music_asset__sub_rev__daily_channel_rev
+    description: ""
+    columns:
+      - name: surrogate_key
+        tests:
+          - unique
+          - not_null
+
+
+  - name: int__longs__video__ad_rev__daily_channel_rev
+    description: ""
+    columns:
+      - name: surrogate_key
+        tests:
+          - unique
+          - not_null

@@ -33,3 +33,9 @@ models:
     staging:
       +materialized: view
       schema: caravan_staging
+    intermediate:
+      +materialized: view
+      schema: caravan_intermediate
+    marts:
+      +materialized: view
+      schema: caravan         
