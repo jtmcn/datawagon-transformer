@@ -49,3 +49,11 @@ models:
         tests:
           - unique
           - not_null
+
+  - name: int__monthly_channel_revenue__7_zeroed
+    description: ""
+    columns:
+      - name: surrogate_key
+        tests:
+          - unique
+          - not_null

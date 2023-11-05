@@ -14,6 +14,7 @@ with
     renamed as (
 
         select
+            report_date, {# Partition #}        
             adjustment_type,
             day as date_key,
             country as country_code,
@@ -26,8 +27,7 @@ with
             uploader,
             {{ clean_channel_id("channel_id") }} as channel_id,
             owned_subscription_views,
-            partner_revenue,
-            report_date_key
+            partner_revenue
         from source
 
     ),
@@ -35,6 +35,7 @@ with
     incremental as (
 
         select
+            report_date,
             adjustment_type,
             date_key,
             country_code,
@@ -47,13 +48,12 @@ with
             uploader,
             channel_id,
             owned_subscription_views,
-            partner_revenue,
-            report_date_key
+            partner_revenue
         from renamed
 
         {% if is_incremental() %}
 
-            where report_date_key > (select max(report_date_key) from {{ this }})
+            where report_date > (select max(report_date) from {{ this }})
 
         {% endif %}
 

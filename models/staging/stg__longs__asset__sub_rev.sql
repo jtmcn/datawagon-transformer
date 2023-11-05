@@ -4,6 +4,7 @@ with
     renamed as (
 
         select
+            report_date, {# Partition #}
             adjustment_type,
             day as date_key,
             country as country_code,
@@ -13,8 +14,7 @@ with
             custom_id,
             asset_title,
             owned_watchtime,
-            partner_revenue,
-            report_date_key -- partition
+            partner_revenue
         from source
 
     ),
@@ -22,6 +22,7 @@ with
     incremental as (
         
         select 
+            report_date,
             adjustment_type,
             date_key,
             country_code,
@@ -31,13 +32,12 @@ with
             custom_id,
             asset_title,
             owned_watchtime,
-            partner_revenue,
-            report_date_key -- partition
+            partner_revenue
         from renamed
 
         {% if is_incremental() %}
 
-        where report_date_key > (select max(report_date_key) from {{ this }})
+        where report_date > (select max(report_date) from {{ this }})
 
         {% endif %}
 

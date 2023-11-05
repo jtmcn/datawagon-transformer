@@ -1,7 +1,7 @@
 version: 2
 
 models:
-  - name: int__shorts__video__ad_rev__monthly_channel_rev
+  - name: int__shorts__channel__ad_rev_monthly
     description: ""
     columns:
       - name: surrogate_key
@@ -10,7 +10,7 @@ models:
           - not_null
 
 
-  - name: int__shorts__video__sub_rev__daily_channel_rev
+  - name: int__shorts__channel__sub_rev_daily
     description: ""
     columns:
       - name: surrogate_key

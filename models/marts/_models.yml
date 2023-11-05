@@ -4,3 +4,18 @@ models:
   - name: monthly_channel_revenue
     config:
       materialized: table
+    columns:
+      - name: surrogate_key
+        tests:
+          - unique
+          - not_null
+
+  - name: missing_acid
+    config:
+      enabled: true
+      materialized: view
+    columns:
+      - name: surrogate_key
+        tests:
+          - unique
+          - not_null          

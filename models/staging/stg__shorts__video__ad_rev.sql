@@ -9,6 +9,7 @@ with
     renamed as (
 
         select
+            report_date, {# Partition #}        
             adjustment_type,
             video_id,
             video_title,
@@ -19,8 +20,7 @@ with
             content_type,
             policy,
             total_views,
-            net_partner_revenue__post_revshare as partner_revenue,
-            report_date_key
+            net_partner_revenue__post_revshare as partner_revenue
         from source
 
     ),
@@ -28,6 +28,7 @@ with
     incremental as (
 
         select
+            report_date,
             adjustment_type,
             video_id,
             video_title,
@@ -38,13 +39,12 @@ with
             content_type,
             policy,
             total_views,
-            partner_revenue,
-            report_date_key
+            partner_revenue
         from renamed
 
         {% if is_incremental() %}
 
-            where report_date_key > (select max(report_date_key) from {{ this }})
+            where report_date > (select max(report_date) from {{ this }})
 
         {% endif %}
 

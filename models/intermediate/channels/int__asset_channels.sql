@@ -20,7 +20,7 @@ channel_id_and_name_ranked as (
         rank()
             over (partition by channel_id order by date_key desc)
             as latest_name_rank
-    from {{ ref("int__longs__video__ad_rev__daily_channel_rev") }}
+    from {{ ref("int__longs__channel__ad_rev_daily") }}
 
 ),
 
