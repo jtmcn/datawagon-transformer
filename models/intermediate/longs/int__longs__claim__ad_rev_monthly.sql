@@ -1,6 +1,6 @@
 with
 int__base__claim__daily as (
-    select * from {{ ref('int__longs__claim__ad_rev_daily') }}
+    select * from {{ ref('int__longs__claim__ad_rev_daily__acid_override') }}
 ),
 
 int__base__claim__monthly as (

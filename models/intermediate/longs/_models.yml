@@ -54,6 +54,15 @@ models:
           - unique
           - not_null
 
+  - name: int__longs__claim__ad_rev_daily__mapped
+    config:
+      materialized: view
+    columns:
+      - name: surrogate_key
+        tests:
+          - unique
+          - not_null
+
   - name: int__longs__claim__ad_rev_monthly
     config:
       materialized: view
