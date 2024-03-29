@@ -32,10 +32,10 @@ models:
   datawagon_cloud:
     staging:
       +materialized: view
-      schema: caravan_staging
+      schema: staging
     intermediate:
       +materialized: view
-      schema: caravan_intermediate
+      schema: staging
     marts:
       +materialized: view
-      schema: caravan         
+      schema: report         

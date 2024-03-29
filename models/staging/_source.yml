@@ -2,7 +2,7 @@ version: 2
 
 sources:
   - name: raw_csv
-    dataset: caravan_external
+    dataset: raw_csv
     loader: datawagon
     tables:
       - name: claim_raw
@@ -14,8 +14,8 @@ sources:
             skip_leading_rows: 1
             hive_partition_uri_prefix: "gs://content_owner_yt_reports/caravan/claim_raw/"
           partitions:
-            - name: report_date_key
-              data_type: int64
+            - name: report_date
+              data_type: date
         columns:
         - name: adjustment_type
           data_type: string
@@ -74,8 +74,8 @@ sources:
             skip_leading_rows: 1
             hive_partition_uri_prefix: "gs://content_owner_yt_reports/caravan/adj_claim_raw/"
           partitions:
-            - name: report_date_key
-              data_type: int64
+            - name: report_date
+              data_type: date
         columns:
         - name: adjustment_type
           data_type: string
@@ -126,6 +126,59 @@ sources:
         - name: partner_revenue
           data_type: numeric
 
+      - name: asset_raw
+        description: "Daily ad revenue by country and asset"
+        external:
+          location: "gs://content_owner_yt_reports/caravan/asset_raw/*"
+          options:
+            format: csv
+            skip_leading_rows: 1
+            hive_partition_uri_prefix: "gs://content_owner_yt_reports/caravan/asset_raw/"
+          partitions:
+            - name: report_date
+              data_type: date
+        columns:
+          - name: adjustment_type
+            data_type: string
+          - name: day
+            data_type: int64
+          - name: country
+            data_type: string
+          - name: asset_id
+            data_type: string
+          - name: asset_title
+            data_type: string
+          - name: asset_labels
+            data_type: string
+          - name: asset_channel_id
+            data_type: string
+          - name: asset_type
+            data_type: string
+          - name: custom_id
+            data_type: string
+          - name: owned_views
+            data_type: int64
+          - name: youtube_revenue_split__auction
+            data_type: numeric
+          - name: youtube_revenue_split__reserved
+            data_type: numeric
+          - name: youtube_revenue_split__partner_sold_youtube_served
+            data_type: numeric
+          - name: youtube_revenue_split__partner_sold_partner_served
+            data_type: numeric
+          - name: youtube_revenue_split
+            data_type: numeric
+          - name: partner_revenue__auction
+            data_type: numeric
+          - name: partner_revenue__reserved
+            data_type: numeric
+          - name: partner_revenue__partner_sold_youtube_served
+            data_type: numeric
+          - name: partner_revenue__partner_sold_partner_served
+            data_type: numeric
+          - name: partner_revenue
+            data_type: numeric
+        
 
       - name: video_raw
         description: "Daily ad revenue by country and video"
@@ -136,8 +189,8 @@ sources:
             skip_leading_rows: 1
             hive_partition_uri_prefix: "gs://content_owner_yt_reports/caravan/video_raw/"
           partitions:
-            - name: report_date_key
-              data_type: int64
+            - name: report_date
+              data_type: date
         columns:
         - name: adjustment_type
           data_type: string
@@ -195,8 +248,8 @@ sources:
             skip_leading_rows: 2
             hive_partition_uri_prefix: "gs://content_owner_yt_reports/caravan/red_rawdata_asset/"
           partitions:
-            - name: report_date_key
-              data_type: int64
+            - name: report_date
+              data_type: date
         columns:
         - name: adjustment_type
           data_type: string
@@ -228,8 +281,8 @@ sources:
             skip_leading_rows: 2
             hive_partition_uri_prefix: "gs://content_owner_yt_reports/caravan/red_music_rawdata_asset/"
           partitions:
-            - name: report_date_key
-              data_type: int64            
+            - name: report_date
+              data_type: date            
         columns:
           - name: adjustment_type
             data_type: string
@@ -261,8 +314,8 @@ sources:
             skip_leading_rows: 1
             hive_partition_uri_prefix: "gs://content_owner_yt_reports/caravan/monthly_shorts_non_music_ads_video_summary/"
           partitions:
-            - name: report_date_key
-              data_type: int64            
+            - name: report_date
+              data_type: date            
         columns:
           - name: adjustment_type
             data_type: string
@@ -296,8 +349,8 @@ sources:
             skip_leading_rows: 2
             hive_partition_uri_prefix: "gs://content_owner_yt_reports/caravan/monthly_shorts_non_music_subscription_video_summary/"
           partitions:
-            - name: report_date_key
-              data_type: int64            
+            - name: report_date
+              data_type: date            
         columns:
         - name: adjustment_type
           data_type: string
@@ -325,3 +378,18 @@ sources:
           data_type: int64
         - name: partner_revenue
           data_type: numeric
+
+      - name: update_acid_mapping
+        description: "Google Sheets override asset id to asset channel id"
+        external:
+          location: "https://docs.google.com/spreadsheets/d/1VAJ2eWzhgBWxiznq1bG--emQNzK-CgE0HSkSCFZFdGw"
+          options:
+            format: google_sheets            
+            skip_leading_rows: 1
+        columns:
+        - name: report_date_override
+          data_type: date
+        - name: match_asset_id
+          data_type: string
+        - name: to_asset_channel_id
+          data_type: string            

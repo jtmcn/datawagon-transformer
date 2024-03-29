@@ -2,7 +2,7 @@ with
     int__monthly_channel_revenue__7_zeroed as (
 
         select
-            report_date_key,
+            report_date,
             asset_channel_id,
             channel_display_name,
             {{ zeroed("longs__ad_revenue") }} as longs__ad_revenue,

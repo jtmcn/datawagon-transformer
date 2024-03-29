@@ -2,10 +2,14 @@ version: 2
 
 models:
   - name: stg__longs__claim__ad_rev
-    description: ""
     config:
-      materialized: "incremental"
+      materialized: view
+      partition_by:
+        field: report_date
+        data_type: date
+        granularity: day
     columns:
+      - name: report_date
       - name: adjustment_type
       - name: date_key
       - name: country
@@ -30,13 +34,20 @@ models:
       - name: partner_revenue__partner_sold_youtube_served
       - name: partner_revenue__partner_sold_partner_served
       - name: partner_revenue
-      - name: report_date_key
 
   - name: stg__longs__claim__ad_rev_adj
     description: ""
     config:
-      materialized: "incremental"    
+      materialized: view    
+      cluster_by: 
+        - report_date
+        - asset_channel_id
+      partition_by:
+        field: report_date
+        data_type: date
+        granularity: day
     columns:
+      - name: report_date
       - name: adjustment_type
       - name: date_key
       - name: country
@@ -61,24 +72,68 @@ models:
       - name: partner_revenue__partner_sold_youtube_served
       - name: partner_revenue__partner_sold_partner_served
       - name: partner_revenue
-      - name: report_date_key
+
+  - name: stg__longs__asset__ad_rev
+    description: ""
+    config:
+      materialized: view    
+      cluster_by: 
+        - report_date
+        - asset_channel_id
+      partition_by:
+        field: report_date
+        data_type: date
+        granularity: day
 
   - name: stg__longs__asset__sub_rev
     config:
-      materialized: "incremental" 
+      materialized: view
+      partition_by:
+        field: report_date
+        data_type: date
+        granularity: day
 
   - name: stg__longs__music_asset__sub_rev
     config:
-      materialized: "incremental"  
+      materialized: view  
+      partition_by:
+        field: report_date
+        data_type: date
+        granularity: day
 
   - name: stg__longs__video__ad_rev
     config:
-      materialized: "incremental"  
+      materialized: view  
+      partition_by:
+        field: report_date
+        data_type: date
+        granularity: day
 
   - name: stg__shorts__video__ad_rev
     config:
-      materialized: "incremental"  
+      materialized: view  
+      partition_by:
+        field: report_date
+        data_type: date
+        granularity: day      
       
   - name: stg__shorts__video__sub_rev
     config:
-      materialized: "incremental"
+      materialized: view
+      partition_by:
+        field: report_date
+        data_type: date
+        granularity: day      
+
+  - name: stg__update_acid_mapping
+    description: "Google Sheets override asset id to asset channel id"
+    config:
+      enabled: true
+      materialized: view
+    columns:
+    - name: report_date_override
+      data_type: date
+    - name: match_asset_id
+      data_type: string
+    - name: to_asset_channel_id
+      data_type: string      

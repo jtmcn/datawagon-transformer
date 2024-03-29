@@ -2,7 +2,7 @@ with
     int__channel_revenue_zeroed as (
 
         select
-            report_date_key,
+            report_date,
             asset_channel_id,
             channel_display_name,
             longs__ad_revenue,
@@ -19,8 +19,7 @@ with
     monthly_channel_revenue as (
 
         select
-            {{ date_key_to_date("report_date_key") }} as report_date,
-            report_date_key,
+            report_date,
             asset_channel_id,
             channel_display_name,
             longs__ad_revenue,

@@ -1,21 +1,19 @@
 with
-    source as (select * from {{ source("raw_csv", "video_raw") }}),
+    source as (select * from {{ source("raw_csv", "asset_raw") }}),
 
     renamed as (
+
         select
-            report_date, {# Partition #}        
+            report_date,
             adjustment_type,
             day as date_key,
-            country as country_code,
-            video_id,
-            video_title,
-            video_duration__sec,
-            category,
-            {{ clean_channel_id("channel_id") }} as channel_id,
-            uploader,
-            channel_display_name,
-            content_type,
-            policy,
+            country,
+            asset_id,
+            asset_title,
+            asset_labels,
+            {{ clean_channel_id("asset_channel_id") }} as asset_channel_id,
+            asset_type,
+            custom_id,
             owned_views,
             youtube_revenue_split__auction,
             youtube_revenue_split__reserved,
@@ -28,23 +26,22 @@ with
             partner_revenue__partner_sold_partner_served,
             partner_revenue
         from source
-    ),
-    incremental as (
 
+    ),
+
+    incremental as (
+        
         select
             report_date,
             adjustment_type,
             date_key,
-            country_code,
-            video_id,
-            video_title,
-            video_duration__sec,
-            category,
-            channel_id,
-            uploader,
-            channel_display_name,
-            content_type,
-            policy,
+            country,
+            asset_id,
+            asset_title,
+            asset_labels,
+            asset_channel_id,
+            asset_type,
+            custom_id,
             owned_views,
             youtube_revenue_split__auction,
             youtube_revenue_split__reserved,
@@ -60,11 +57,12 @@ with
 
         {% if is_incremental() %}
 
-            where report_date > (select max(report_date) from {{ this }})
+        where report_date > (select max(report_date) from {{ this }})
 
         {% endif %}
 
     )
+
 
 select *
 from incremental

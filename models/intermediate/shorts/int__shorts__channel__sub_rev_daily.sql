@@ -8,14 +8,14 @@ with
     stg__shorts__video__sub_rev__daily_channel_revenue as (
 
         select
-            report_date_key,
+            report_date,
             date_key,
             channel_id,
             sum(partner_revenue) as channel_revenue,
             {{ dbt_utils.generate_surrogate_key(["date_key", "channel_id"]) }}
             as surrogate_key
         from stg__shorts__video__sub_rev
-        group by report_date_key, date_key, channel_id
+        group by report_date, date_key, channel_id
 
     )
 
