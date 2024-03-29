@@ -2,7 +2,7 @@ version: 2
 
 sources:
   - name: raw_csv
-    dataset: caravan_external
+    dataset: raw_csv
     loader: datawagon
     tables:
       - name: claim_raw

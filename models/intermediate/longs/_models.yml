@@ -54,7 +54,7 @@ models:
           - unique
           - not_null
 
-  - name: int__longs__claim__ad_rev_daily__mapped
+  - name: int__longs__claim__ad_rev_daily__acid_override
     config:
       materialized: view
     columns:

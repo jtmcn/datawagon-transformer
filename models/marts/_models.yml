@@ -3,7 +3,7 @@ version: 2
 models:
   - name: monthly_channel_revenue
     config:
-      materialized: table
+      materialized: view
     columns:
       - name: surrogate_key
         tests:

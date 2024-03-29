@@ -2,9 +2,8 @@ version: 2
 
 models:
   - name: stg__longs__claim__ad_rev
-    description: ""
     config:
-      materialized: "incremental"
+      materialized: view
       partition_by:
         field: report_date
         data_type: date
@@ -39,7 +38,7 @@ models:
   - name: stg__longs__claim__ad_rev_adj
     description: ""
     config:
-      materialized: "incremental"    
+      materialized: view    
       cluster_by: 
         - report_date
         - asset_channel_id
@@ -77,7 +76,7 @@ models:
   - name: stg__longs__asset__ad_rev
     description: ""
     config:
-      materialized: "incremental"    
+      materialized: view    
       cluster_by: 
         - report_date
         - asset_channel_id
@@ -88,7 +87,7 @@ models:
 
   - name: stg__longs__asset__sub_rev
     config:
-      materialized: "incremental"
+      materialized: view
       partition_by:
         field: report_date
         data_type: date
@@ -96,7 +95,7 @@ models:
 
   - name: stg__longs__music_asset__sub_rev
     config:
-      materialized: "incremental"  
+      materialized: view  
       partition_by:
         field: report_date
         data_type: date
@@ -104,7 +103,7 @@ models:
 
   - name: stg__longs__video__ad_rev
     config:
-      materialized: "incremental"  
+      materialized: view  
       partition_by:
         field: report_date
         data_type: date
@@ -112,7 +111,7 @@ models:
 
   - name: stg__shorts__video__ad_rev
     config:
-      materialized: "incremental"  
+      materialized: view  
       partition_by:
         field: report_date
         data_type: date
@@ -120,16 +119,17 @@ models:
       
   - name: stg__shorts__video__sub_rev
     config:
-      materialized: "incremental"
+      materialized: view
       partition_by:
         field: report_date
         data_type: date
         granularity: day      
 
-  - name: seed__update_acid_mapping
+  - name: stg__update_acid_mapping
     description: "Google Sheets override asset id to asset channel id"
     config:
-      materialized: "table"    
+      enabled: true
+      materialized: view
     columns:
     - name: report_date_override
       data_type: date
