@@ -13,7 +13,7 @@ missing_acid as (
         channel_id,
         channel_display_name,
         owned_views,
-        partner_revenue,
+        partner_revenue as ad_revenue,
         surrogate_key
     from {{ ref('int__longs__asset_claim_video__ad_rev_monthly') }}
     where asset_channel_id is null

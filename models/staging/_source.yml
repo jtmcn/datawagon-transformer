@@ -2,17 +2,18 @@ version: 2
 
 sources:
   - name: raw_csv
-    dataset: raw_csv
+    dataset: caravan_raw_csv
     loader: datawagon
     tables:
       - name: claim_raw
         description: "Daily ad revenue by country and claim"
         external:
-          location: "gs://content_owner_yt_reports/caravan/claim_raw/*"
+          location: "gs://caravan_yt_reports/caravan/claim_raw/*"
           options:
             format: csv
             skip_leading_rows: 1
-            hive_partition_uri_prefix: "gs://content_owner_yt_reports/caravan/claim_raw/"
+            hive_partition_uri_prefix: "gs://caravan_yt_reports/caravan/claim_raw/"
+            require_hive_partition_filter: true
           partitions:
             - name: report_date
               data_type: date
@@ -68,11 +69,12 @@ sources:
       - name: adj_claim_raw
         description: "Daily ad revenue by country and claim (Adjusted)"
         external:
-          location: "gs://content_owner_yt_reports/caravan/adj_claim_raw/*"
+          location: "gs://caravan_yt_reports/caravan/adj_claim_raw/*"
           options:
             format: csv
             skip_leading_rows: 1
-            hive_partition_uri_prefix: "gs://content_owner_yt_reports/caravan/adj_claim_raw/"
+            hive_partition_uri_prefix: "gs://caravan_yt_reports/caravan/adj_claim_raw/"
+            require_hive_partition_filter: true
           partitions:
             - name: report_date
               data_type: date
@@ -129,11 +131,12 @@ sources:
       - name: asset_raw
         description: "Daily ad revenue by country and asset"
         external:
-          location: "gs://content_owner_yt_reports/caravan/asset_raw/*"
+          location: "gs://caravan_yt_reports/caravan/asset_raw/*"
           options:
             format: csv
             skip_leading_rows: 1
-            hive_partition_uri_prefix: "gs://content_owner_yt_reports/caravan/asset_raw/"
+            hive_partition_uri_prefix: "gs://caravan_yt_reports/caravan/asset_raw/"
+            require_hive_partition_filter: true            
           partitions:
             - name: report_date
               data_type: date
@@ -183,11 +186,12 @@ sources:
       - name: video_raw
         description: "Daily ad revenue by country and video"
         external:
-          location: "gs://content_owner_yt_reports/caravan/video_raw/*"
+          location: "gs://caravan_yt_reports/caravan/video_raw/*"
           options:
             format: csv
             skip_leading_rows: 1
-            hive_partition_uri_prefix: "gs://content_owner_yt_reports/caravan/video_raw/"
+            hive_partition_uri_prefix: "gs://caravan_yt_reports/caravan/video_raw/"
+            require_hive_partition_filter: true            
           partitions:
             - name: report_date
               data_type: date
@@ -242,11 +246,12 @@ sources:
       - name: red_rawdata_asset
         description: "Daily ad revenue by country and video"
         external:
-          location: "gs://content_owner_yt_reports/caravan/red_rawdata_asset/*"
+          location: "gs://caravan_yt_reports/caravan/red_rawdata_asset/*"
           options:
             format: csv
             skip_leading_rows: 2
-            hive_partition_uri_prefix: "gs://content_owner_yt_reports/caravan/red_rawdata_asset/"
+            hive_partition_uri_prefix: "gs://caravan_yt_reports/caravan/red_rawdata_asset/"
+            require_hive_partition_filter: true
           partitions:
             - name: report_date
               data_type: date
@@ -275,11 +280,12 @@ sources:
       - name: red_music_rawdata_asset
         description: "Daily ad revenue by country"
         external:
-          location: "gs://content_owner_yt_reports/caravan/red_music_rawdata_asset/*"
+          location: "gs://caravan_yt_reports/caravan/red_music_rawdata_asset/*"
           options:
             format: csv
             skip_leading_rows: 2
-            hive_partition_uri_prefix: "gs://content_owner_yt_reports/caravan/red_music_rawdata_asset/"
+            hive_partition_uri_prefix: "gs://caravan_yt_reports/caravan/red_music_rawdata_asset/"
+            require_hive_partition_filter: true            
           partitions:
             - name: report_date
               data_type: date            
@@ -308,11 +314,12 @@ sources:
       - name: monthly_shorts_non_music_ads_video_summary
         description: "Daily ad revenue by country"
         external:
-          location: "gs://content_owner_yt_reports/caravan/monthly_shorts_non_music_ads_video_summary/*"
+          location: "gs://caravan_yt_reports/caravan/monthly_shorts_non_music_ads_video_summary/*"
           options:
             format: csv
             skip_leading_rows: 1
-            hive_partition_uri_prefix: "gs://content_owner_yt_reports/caravan/monthly_shorts_non_music_ads_video_summary/"
+            hive_partition_uri_prefix: "gs://caravan_yt_reports/caravan/monthly_shorts_non_music_ads_video_summary/"
+            require_hive_partition_filter: true            
           partitions:
             - name: report_date
               data_type: date            
@@ -343,11 +350,12 @@ sources:
       - name: monthly_shorts_non_music_subscription_video_summary
         description: "Daily ad revenue by country"
         external:
-          location: "gs://content_owner_yt_reports/caravan/monthly_shorts_non_music_subscription_video_summary/*"
+          location: "gs://caravan_yt_reports/caravan/monthly_shorts_non_music_subscription_video_summary/*"
           options:
             format: csv
             skip_leading_rows: 2
-            hive_partition_uri_prefix: "gs://content_owner_yt_reports/caravan/monthly_shorts_non_music_subscription_video_summary/"
+            hive_partition_uri_prefix: "gs://caravan_yt_reports/caravan/monthly_shorts_non_music_subscription_video_summary/"
+            require_hive_partition_filter: true            
           partitions:
             - name: report_date
               data_type: date            
