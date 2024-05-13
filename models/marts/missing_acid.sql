@@ -7,11 +7,11 @@ missing_acid as (
         claim_count,
         asset_channel_id,
         asset_id,
-        asset_title,
+        {# asset_title, #}
         video_id,
-        video_title,
-        channel_id,
-        channel_display_name,
+        {# video_title, #}
+        {# channel_id, #}
+        {# channel_display_name, #}
         owned_views,
         partner_revenue as ad_revenue,
         surrogate_key

@@ -6,15 +6,49 @@ models:
     columns:
       - name: surrogate_key
         tests:
-          - unique
-          - not_null
+          - unique:
+              config:
+                where: report_date = '2024-03-31'
+          - not_null:
+              config:
+                where: report_date = '2024-03-31'
 
 
-  - name: int__shorts__channel__sub_rev_daily
+
+  - name: int__shorts__channel__sub_rev_monthly
     description: ""
     columns:
       - name: surrogate_key
         tests:
-          - unique
-          - not_null
+          - unique:
+              config:
+                where: report_date = '2024-03-31'
+          - not_null:
+              config:
+                where: report_date = '2024-03-31'
 
+
+  - name: int__shorts__video__ad_rev_monthly
+    description: ""
+    columns:
+      - name: surrogate_key
+        tests:
+          - unique:
+              config:
+                where: report_date = '2024-03-31'
+          - not_null:
+              config:
+                where: report_date = '2024-03-31'
+
+
+  - name: int__shorts__video__sub_rev_monthly
+    description: ""
+    columns:
+      - name: surrogate_key
+        tests:
+          - unique:
+              config:
+                where: report_date = '2024-03-31'
+          - not_null:
+              config:
+                where: report_date = '2024-03-31'

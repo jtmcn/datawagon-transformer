@@ -1,4 +1,4 @@
-with
+{# with
 
 int__base__video as (
 
@@ -80,4 +80,4 @@ int__base__video__daily as (
 )
 
 select *
-from int__base__video__daily
+from int__base__video__daily #}

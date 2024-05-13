@@ -4,12 +4,16 @@ with
         select
             report_date,
             asset_channel_id,
-            channel_display_name,
+            {# channel_display_name, #}
+            asset_id,
+            {# asset_title, #}
+            video_id,
+            {# video_title, #}
             longs__ad_revenue,
             longs__ad_revenue_adj,
             longs__music_sub_revenue,
             surrogate_key
-        from {{ ref("int__monthly_channel_revenue__3_long_music_sub") }}
+        from {{ ref("int__monthly_asset_revenue__3_long_music_sub") }}
 
     ),
 
@@ -18,9 +22,10 @@ with
         select
             report_date,
             asset_channel_id,
+            asset_id,
             sum(asset_revenue) as longs__non_music_sub_revenue
         from {{ ref("int__longs__asset__sub_rev_daily") }}
-        group by report_date, asset_channel_id
+        group by report_date, asset_channel_id, asset_id
 
     ),
 
@@ -29,7 +34,11 @@ with
         select
             channel_revenue.report_date,
             channel_revenue.asset_channel_id,
-            channel_revenue.channel_display_name,
+            {# channel_revenue.channel_display_name, #}
+            channel_revenue.asset_id,
+            {# channel_revenue.asset_title, #}
+            channel_revenue.video_id,
+            {# channel_revenue.video_title, #}
             channel_revenue.longs__ad_revenue,
             channel_revenue.longs__ad_revenue_adj,
             channel_revenue.longs__music_sub_revenue,
@@ -40,6 +49,7 @@ with
             longs__asset__sub_rev__monthly as non_music_sub
             on channel_revenue.report_date = non_music_sub.report_date
             and channel_revenue.asset_channel_id = non_music_sub.asset_channel_id
+            and channel_revenue.asset_id = non_music_sub.asset_id
 
     )
 

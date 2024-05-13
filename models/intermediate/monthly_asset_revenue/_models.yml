@@ -2,19 +2,7 @@ version: 2
 
 models:
 
-  - name: int__monthly_channel_revenue__1_long_ads
-    description: ""
-    columns:
-      - name: surrogate_key
-        tests:
-          - unique:
-              config:
-                where: report_date = '2024-03-31'
-          - not_null:
-              config:
-                where: report_date = '2024-03-31'
-
-  - name: int__monthly_channel_revenue__2_long_ads_adj
+  - name: int__monthly_asset_revenue__1_long_ads
     description: ""
     columns:
       - name: surrogate_key
@@ -27,7 +15,7 @@ models:
                 where: report_date = '2024-03-31'
 
 
-  - name: int__monthly_channel_revenue__3_long_music_sub
+  - name: int__monthly_asset_revenue__2_long_ads_adj
     description: ""
     columns:
       - name: surrogate_key
@@ -40,7 +28,7 @@ models:
                 where: report_date = '2024-03-31'
 
 
-  - name: int__monthly_channel_revenue__4_long_non_music_sub
+  - name: int__monthly_asset_revenue__3_long_music_sub
     description: ""
     columns:
       - name: surrogate_key
@@ -53,7 +41,7 @@ models:
                 where: report_date = '2024-03-31'
 
 
-  - name: int__monthly_channel_revenue__5_short_ads
+  - name: int__monthly_asset_revenue__4_long_non_music_sub
     description: ""
     columns:
       - name: surrogate_key
@@ -66,7 +54,7 @@ models:
                 where: report_date = '2024-03-31'
 
 
-  - name: int__monthly_channel_revenue__6_short_sub
+  - name: int__monthly_asset_revenue__5_short_ads
     description: ""
     columns:
       - name: surrogate_key
@@ -79,7 +67,32 @@ models:
                 where: report_date = '2024-03-31'
 
 
-  - name: int__monthly_channel_revenue__7_zeroed
+  - name: int__monthly_asset_revenue__6_short_sub
+    description: ""
+    columns:
+      - name: surrogate_key
+        tests:
+          - unique:
+              config:
+                where: report_date = '2024-03-31'
+          - not_null:
+              config:
+                where: report_date = '2024-03-31'
+
+
+  - name: int__monthly_asset_revenue__7_zeroed
+    description: ""
+    columns:
+      - name: surrogate_key
+        tests:
+          - unique:
+              config:
+                where: report_date = '2024-03-31'
+          - not_null:
+              config:
+                where: report_date = '2024-03-31'
+
+  - name: int__monthly_asset_revenue__8_sum
     description: ""
     columns:
       - name: surrogate_key

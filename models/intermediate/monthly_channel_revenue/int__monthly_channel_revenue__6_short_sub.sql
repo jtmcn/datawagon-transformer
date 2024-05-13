@@ -21,7 +21,7 @@ shorts__video__sub_rev as (
         report_date,
         channel_id,
         sum(channel_revenue) as shorts__sub_revenue
-    from {{ ref("int__shorts__channel__sub_rev_daily") }}
+    from {{ ref("int__shorts__channel__sub_rev_monthly") }}
     group by report_date, channel_id
 
 ),

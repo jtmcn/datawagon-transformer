@@ -35,22 +35,24 @@ int__longs__claim__ad_rev_daily__acid_override as (
         asset_channel_id,
         asset_id,
         video_id,
-        channel_id,
+        {# channel_id, #}
         sum(owned_views) as owned_views,
         sum(partner_revenue) as partner_revenue,
-        {{
-                dbt_utils.generate_surrogate_key(
-                    ["date_key", "report_date", "asset_channel_id", "asset_id", "video_id", "channel_id"]
-                )
-        }} as surrogate_key
+        {{ dbt_utils.generate_surrogate_key([
+            "date_key", 
+            "report_date", 
+            "asset_channel_id", 
+            "asset_id", 
+            "video_id"
+        ]) }} as surrogate_key
     from int__longs__claim__ad_rev_daily
     group by
         date_key,
         report_date,
         asset_channel_id,
         asset_id,
-        video_id,
-        channel_id
+        video_id
+        {# channel_id #}
 
 )
 
