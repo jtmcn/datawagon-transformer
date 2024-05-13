@@ -6,7 +6,7 @@ int__base__asset__daily as (
         report_date,
         date_key,
         asset_id,
-        asset_title,
+        {# asset_title, #}
         first_value(asset_title) over (
             partition by report_date, asset_id
             order by date_key desc) as latest_asset_title,

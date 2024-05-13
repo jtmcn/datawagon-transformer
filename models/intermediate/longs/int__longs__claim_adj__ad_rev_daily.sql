@@ -11,14 +11,15 @@ int__longs__claim_adj__ad_rev_daily as (
         report_date,
         date_key,
         asset_channel_id,
-        sum(partner_revenue) as channel_revenue,
+        asset_id,
+        sum(partner_revenue) as asset_revenue,
             {{
                 dbt_utils.generate_surrogate_key(
-                    ["report_date", "date_key", "asset_channel_id"]
+                    ["report_date", "date_key", "asset_channel_id", "asset_id"]
                 )
             }} as surrogate_key
     from stg__longs__claim__ad_rev_adj
-    group by report_date, date_key, asset_channel_id
+    group by report_date, date_key, asset_channel_id, asset_id
 
 )
 

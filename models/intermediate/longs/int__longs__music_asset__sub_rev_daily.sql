@@ -11,14 +11,16 @@ with
             report_date,
             date_key,
             asset_channel_id,
-            sum(partner_revenue) as channel_revenue,
-            {{
-                dbt_utils.generate_surrogate_key(
-                    ["report_date", "date_key", "asset_channel_id"]
-                )
-            }} as surrogate_key
+            asset_id,
+            sum(partner_revenue) as asset_revenue,
+            {{ dbt_utils.generate_surrogate_key([
+                        "report_date", 
+                        "date_key", 
+                        "asset_channel_id", 
+                        "asset_id"
+                ]) }} as surrogate_key
         from stg__longs__music_asset__sub_rev
-        group by report_date, date_key, asset_channel_id
+        group by report_date, date_key, asset_channel_id, asset_id
 
     )
 

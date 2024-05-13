@@ -17,7 +17,7 @@ with
         select
             report_date,
             asset_channel_id,
-            sum(channel_revenue) as longs__music_sub_revenue
+            sum(asset_revenue) as longs__music_sub_revenue
         from {{ ref("int__longs__music_asset__sub_rev_daily") }}
         group by report_date, asset_channel_id
 
