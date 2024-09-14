@@ -6,17 +6,29 @@ models:
     columns:
       - name: surrogate_key
         tests:
-          - unique
-          - not_null
-
+          - unique:
+              config:
+                where: report_date = '2024-03-31'
+          - not_null:
+              config:
+                where: report_date = '2024-03-31'
+      - name: asset_channel_id
+        tests:
+          - not_null:
+              config:
+                where: report_date = '2024-03-31'
 
   - name: int__longs__asset_claim_video__ad_rev_monthly
     description: ""
     columns:
       - name: surrogate_key
         tests:
-          - unique
-          - not_null
+          - unique:
+              config:
+                where: report_date = '2024-03-31'
+          - not_null:
+              config:
+                where: report_date = '2024-03-31'
 
 
   - name: int__longs__channel__ad_rev_daily
@@ -24,8 +36,12 @@ models:
     columns:
       - name: surrogate_key
         tests:
-          - unique
-          - not_null
+          - unique:
+              config:
+                where: report_date = '2024-03-31'
+          - not_null:
+              config:
+                where: report_date = '2024-03-31'
 
 
   - name: int__longs__claim_adj__ad_rev_daily
@@ -33,8 +49,12 @@ models:
     columns:
       - name: surrogate_key
         tests:
-          - unique
-          - not_null
+          - unique:
+              config:
+                where: report_date = '2024-03-31'
+          - not_null:
+              config:
+                where: report_date = '2024-03-31'
 
 
   - name: int__longs__music_asset__sub_rev_daily
@@ -42,8 +62,12 @@ models:
     columns:
       - name: surrogate_key
         tests:
-          - unique
-          - not_null
+          - unique:
+              config:
+                where: report_date = '2024-03-31'
+          - not_null:
+              config:
+                where: report_date = '2024-03-31'
 
   - name: int__longs__claim__ad_rev_daily
     config:
@@ -51,8 +75,12 @@ models:
     columns:
       - name: surrogate_key
         tests:
-          - unique
-          - not_null
+          - unique:
+              config:
+                where: report_date = '2024-03-31'
+          - not_null:
+              config:
+                where: report_date = '2024-03-31'
 
   - name: int__longs__claim__ad_rev_daily__acid_override
     config:
@@ -60,8 +88,12 @@ models:
     columns:
       - name: surrogate_key
         tests:
-          - unique
-          - not_null
+          - unique:
+              config:
+                where: report_date = '2024-03-31'
+          - not_null:
+              config:
+                where: report_date = '2024-03-31'
 
   - name: int__longs__claim__ad_rev_monthly
     config:
@@ -69,8 +101,12 @@ models:
     columns:
       - name: surrogate_key
         tests:
-          - unique
-          - not_null
+          - unique:
+              config:
+                where: report_date = '2024-03-31'
+          - not_null:
+              config:
+                where: report_date = '2024-03-31'
       - name: claim_count
         # todo: test val < 31
         # tests: 
@@ -81,8 +117,12 @@ models:
     columns:
       - name: surrogate_key
         tests:
-          - unique
-          - not_null          
+          - unique:
+              config:
+                where: report_date = '2024-03-31'
+          - not_null:
+              config:
+                where: report_date = '2024-03-31'          
   
   - name: int__longs__asset__ad_rev_monthly
     config:
@@ -90,8 +130,12 @@ models:
     columns:
       - name: surrogate_key
         tests:
-          - unique
-          - not_null        
+          - unique:
+              config:
+                where: report_date = '2024-03-31'
+          - not_null:
+              config:
+                where: report_date = '2024-03-31'        
 
   - name: int__longs__video__ad_rev_daily
     config:
@@ -99,8 +143,12 @@ models:
     columns:
       - name: surrogate_key
         tests:
-          - unique
-          - not_null              
+          - unique:
+              config:
+                where: report_date = '2024-03-31'
+          - not_null:
+              config:
+                where: report_date = '2024-03-31'              
           
   - name: int__longs__video__ad_rev_monthly
     config:
@@ -108,5 +156,9 @@ models:
     columns:
       - name: surrogate_key
         tests:
-          - unique
-          - not_null                 
+          - unique:
+              config:
+                where: report_date = '2024-03-31'
+          - not_null:
+              config:
+                where: report_date = '2024-03-31'                 

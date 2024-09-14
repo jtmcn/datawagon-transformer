@@ -7,8 +7,12 @@ models:
     columns:
       - name: surrogate_key
         tests:
-          - unique
-          - not_null
+          - unique:
+              config:
+                where: report_date = '2024-03-31'
+          - not_null:
+              config:
+                where: report_date = '2024-03-31'
 
   - name: missing_acid
     config:
@@ -17,5 +21,9 @@ models:
     columns:
       - name: surrogate_key
         tests:
-          - unique
-          - not_null          
+          - unique:
+              config:
+                where: report_date = '2024-03-31'
+          - not_null:
+              config:
+                where: report_date = '2024-03-31'          
